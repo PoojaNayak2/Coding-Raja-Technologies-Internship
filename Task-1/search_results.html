@@ -1,0 +1,34 @@
+<!-- templates/search_results.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results - Movie Recommendation System</title>
+</head>
+<body>
+    <h1>Search Results</h1>
+
+    <form method="post" action="/search">
+        <label for="title">Enter Movie Title:</label>
+        <input type="text" id="title" name="title" required>
+        <button type="submit">Search</button>
+    </form>
+
+    <h2>Results</h2>
+{% if results is not none and not results.empty %}
+    <ul>
+        {% for result in results.itertuples() %}
+            <li>
+                {{ result.title }} - {{ result.genres }}
+                <!-- Add more details if needed -->
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No results found.</p>
+{% endif %}
+
+</body>
+</html>
